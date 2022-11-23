@@ -1,4 +1,4 @@
-package ch.heigvd.poo.labo7;
+package ch.heigvd.poo.labo7.hanoi;
 
 public class Hanoi {
     public static void main(String[] args) {
