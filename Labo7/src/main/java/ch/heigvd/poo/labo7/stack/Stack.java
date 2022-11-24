@@ -6,6 +6,23 @@ public class Stack<T> implements Iterable<T>{
     private StackElement<T> top;
     private int size;
 
+    /**
+     * Construit un stack vide. (Pour la tour 2 & 3)
+     */
+    public Stack(){
+        top = null;
+        size = 0;
+    }
+
+    /**
+     * Construit un stack avec déjà des valeurs dedans. (pour la première tour)
+     * @param value
+     */
+    public Stack(T value){
+        //top = value;
+        //this.size = value;
+    }
+
     public void push(T value) {
         top = new StackElement<>(top, value);
         size++;
@@ -49,6 +66,8 @@ public class Stack<T> implements Iterable<T>{
         return sb.toString();
     }
 
+    //Classes supplémentaires
+    //Classe StackElement<E>
     private static class StackElement<E> {
         StackElement<E> next;
 
@@ -60,6 +79,7 @@ public class Stack<T> implements Iterable<T>{
         }
     }
 
+    //Classe StackIterator
     private static class StackIterator<T> implements Iterator<T> {
         private StackElement<T> stackElement;
 
