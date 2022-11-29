@@ -21,6 +21,10 @@ public class Stack{
         }
     }
 
+    /**
+     * Add an item on the top of the stack
+     * @param value the item we want to add
+     */
     public void push(int value) {
         if (isFull()){
             throw new RuntimeException("Stack Overflow");
@@ -29,6 +33,10 @@ public class Stack{
         array[--top] = value;
     }
 
+    /**
+     * Remove the top item of the stack
+     * @return The item we just popped out
+     */
     public int pop() {
         if (isEmpty())
             throw new RuntimeException("The stack is empty");
@@ -36,18 +44,34 @@ public class Stack{
         return array[top++];
     }
 
+    /**
+     * Return if the stack is full or not
+     * @return true if is full, false on other case
+     */
     private boolean isFull(){
         return top == 0;
     }
 
+    /**
+     * Return if the stack is empty or not
+     * @return true if is empty, false on other case
+     */
     private boolean isEmpty(){
         return top == size;
     }
 
+    //TBH
+    /**
+     * CLear the current stack
+     */
     public void clear(){
         top = size;
     }
 
+    /**
+     *
+     * @return
+     */
     public int[] getState(){
         int[] returnArray = new int[size];
         for (int i = 0; i < size - top; ++i){
