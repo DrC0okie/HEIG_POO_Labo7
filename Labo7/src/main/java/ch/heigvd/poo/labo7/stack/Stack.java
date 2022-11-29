@@ -14,7 +14,7 @@ public class Stack{
     public Stack(int value){
         array = new int[value];
         this.size = value;
-        top = size - 1;
+        top = 0;
 
         for (int i = 0; i < value; ++i){
             array[i] = i + 1;
@@ -26,32 +26,32 @@ public class Stack{
             throw new RuntimeException("Stack Overflow");
         }
 
-        array[++top] = value;
+        array[--top] = value;
     }
 
     public int pop() {
         if (isEmpty())
             throw new RuntimeException("The stack is empty");
 
-        return array[top--];
+        return array[top++];
     }
 
     private boolean isFull(){
-        return top == size -1;
+        return top == 0;
     }
 
     private boolean isEmpty(){
-        return top == -1;
+        return top == size;
     }
 
     public void clear(){
-        top = -1;
+        top = size;
     }
 
     public int[] getState(){
         int[] returnArray = new int[size];
-        for (int i = 0; i <= top; ++i){
-            returnArray[0] = array[top - i];
+        for (int i = 0; i < size - top; ++i){
+            returnArray[i] = array[top + i];
         }
         return returnArray;
     }
