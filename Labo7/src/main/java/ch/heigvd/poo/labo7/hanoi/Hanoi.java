@@ -3,7 +3,7 @@ package ch.heigvd.poo.labo7.hanoi;
 import ch.heigvd.poo.labo7.stack.Stack;
 
 public class Hanoi {
-    Stack tower1, tower2 = new Stack(), tower3 = new Stack();
+    Stack tower1, tower2, tower3;
 
     int turn = 0;
 
@@ -12,7 +12,11 @@ public class Hanoi {
     //}
 
     public Hanoi(int disks){
-        tower1 = new Stack<>(disks);
+        tower1 = new Stack(disks);
+        tower2 = new Stack(disks);
+        tower2.clear();
+        tower3 = new Stack(disks);
+        tower3.clear();
     }
 
     public void solve(){
