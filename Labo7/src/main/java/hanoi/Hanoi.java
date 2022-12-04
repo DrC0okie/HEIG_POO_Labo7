@@ -3,7 +3,7 @@ package hanoi;
 import util.Stack;
 
 /**
- * Contains all the methods to solve, and display the Hannoi tower problem
+ * Contains all the methods to solve and display the Hanoi tower problem
  *
  * @author Kevin Farine, Timothee Van Hove
  */
@@ -29,14 +29,14 @@ public class Hanoi {
     private final int nbDisks;
 
     /**
+     * The displayer that displays the execution of the Hanoi towers problem.
+     */
+    private final HanoiDisplayer displayer;
+
+    /**
      * The number of moves required to solve the problem with n disks.
      */
     private int nbMoves;
-
-    /**
-     * The displayer that displays the execution of the Hanoi towers problem.
-     */
-    HanoiDisplayer displayer;
 
     /**
      * Hanoi generic constructor.
@@ -45,20 +45,21 @@ public class Hanoi {
      * @param displayer The displayer that displays the execution of the Hanoi towers problem.
      */
     public Hanoi(int nbDisks, HanoiDisplayer displayer) {
-        if (nbDisks < 0)
+        if (nbDisks < 0){
             throw new RuntimeException("The disks count cannot be negative");
+        }
 
         this.nbDisks = nbDisks;
         this.displayer = displayer;
 
         // Stacks initialization
         needles = new Stack[NB_NEEDLES];
-        for (int i = 0; i < NB_NEEDLES; i++) {
+        for (int i = 0; i < NB_NEEDLES; ++i) {
             needles[i] = new Stack();
         }
 
         // Puts all the disks onto the first needle beginning by the last one
-        for (int i = nbDisks; i > 0; i--) {
+        for (int i = nbDisks; i > 0; --i) {
             needles[0].push(i);
         }
     }
@@ -86,17 +87,19 @@ public class Hanoi {
      * @return a 2d int array representing the status of the 3 needles.
      */
     public int[][] status() {
-        int[][] result = new int[NB_NEEDLES][];
+        int[][] status = new int[NB_NEEDLES][];
 
-        for (int i = 0; i < NB_NEEDLES; i++) {
+        for (int i = 0; i < NB_NEEDLES; ++i) {
+            //Get the current state of each stack
             Object[] currentState = needles[i].getCurrentState();
-            result[i] = new int[currentState.length];
+            status[i] = new int[currentState.length];
 
-            for (int j = 0; j < currentState.length; j++) {
-                result[i][j] = (int) currentState[j];
+            for (int j = 0; j < currentState.length; ++j) {
+                //Cast the value of each Item in the stack to int
+                status[i][j] = (int)currentState[j];
             }
         }
-        return result;
+        return status;
     }
 
     /**
@@ -125,7 +128,7 @@ public class Hanoi {
     @Override
     public String toString() {
         StringBuilder state = new StringBuilder("-- Turn: " + turn() + "\n");
-        for (int i = 0; i < NB_NEEDLES; i++) {
+        for (int i = 0; i < NB_NEEDLES; ++i) {
             state.append(String.format("%-5s%c %s \n", TOWER_NAMES[i], ':', needles[i]));
         }
         return state.toString();
@@ -141,7 +144,7 @@ public class Hanoi {
      */
     private void hanoiAlgorithm(Stack from, Stack via, Stack to, int nbDisks) {
         if (nbDisks > 0) {
-            nbMoves++;
+            ++nbMoves;
             hanoiAlgorithm(from, to, via, nbDisks - 1);
 
             // Transfers the top disk between 2 stacks

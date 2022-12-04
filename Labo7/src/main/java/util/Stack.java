@@ -24,7 +24,7 @@ public class Stack {
     /**
      * Returns an array that represents the current state of this stack starting with the top item.
      *
-     * @return The array that represents the state of this stack.
+     * @return An array that represents the state of this stack.
      */
     public Object[] getCurrentState() {
         StackIterator iterator = getIterator();

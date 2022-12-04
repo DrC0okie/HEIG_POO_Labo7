@@ -9,12 +9,12 @@ class Item {
     /**
      * The value of this item.
      */
-    private Object value;
+    private final Object value;
 
     /**
      * The next item linked to this one.
      */
-    private Item next;
+    private final Item next;
 
     /**
      * Item constructor

@@ -37,12 +37,13 @@ public class StackIterator {
      * @throws RuntimeException if the next item does not exist
      */
     public Object next() {
-        if (!hasNext())
+        if (!hasNext()){
             throw new RuntimeException("The next item doesn't exists");
+        }
 
-        Item current = item;
+        Object currentValue = item.getValue();
         item = item.getNextItem();
-        return current.getValue();
+        return currentValue;
     }
 }
 
