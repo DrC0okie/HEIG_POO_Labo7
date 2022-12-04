@@ -7,12 +7,15 @@ import java.util.List;
  * Represents a LIFO stack of objects.
  */
 public class Stack {
+    /**
+     * The item that is currently on top of the stack.
+     */
     private Item topItem;
 
     /**
      * Pushes an item onto the top of this stack.
      *
-     * @param object The object to push on top
+     * @param object The object to push on top.
      */
     public void push(Object object) {
         topItem = new Item(object, topItem);
@@ -21,8 +24,8 @@ public class Stack {
     /**
      * Removes the object at the top of this stack and returns it.
      *
-     * @return The object at the top of this stack
-     * @throws RuntimeException If the stack is empty
+     * @return The object at the top of this stack.
+     * @throws RuntimeException If the stack is empty.
      */
     public Object pop() {
         if (topItem == null)
@@ -34,9 +37,9 @@ public class Stack {
     }
 
     /**
-     * Returns an array that represents the current state of this stack starting with the top item
+     * Returns an array that represents the current state of this stack starting with the top item.
      *
-     * @return The array that represents the state of this stack
+     * @return The array that represents the state of this stack.
      */
     public Object[] getCurrentState() {
         StackIterator iterator = getIterator();
@@ -49,27 +52,27 @@ public class Stack {
     }
 
     /**
-     * Returns an iterator pointing to the top item
+     * Returns an iterator pointing to the top item.
      *
-     * @return an iterator pointing to the top item
+     * @return an iterator pointing to the top item.
      */
     public StackIterator getIterator() {
         return new StackIterator(topItem);
     }
 
     /**
-     * Returns a string representation of this stack
+     * Returns a string representation of this stack.
      *
-     * @return The string representation of this stack
+     * @return The string representation of this stack.
      */
     @Override
     public String toString() {
         StackIterator iterator = getIterator();
-        StringBuilder sb = new StringBuilder("[");
+        StringBuilder builder = new StringBuilder("[");
 
         while (iterator.hasNext())
-            sb.append(" <").append(iterator.next()).append("> ");
+            builder.append(" <").append(iterator.next()).append("> ");
 
-        return sb.append("]").toString();
+        return builder.append("]").toString();
     }
 }

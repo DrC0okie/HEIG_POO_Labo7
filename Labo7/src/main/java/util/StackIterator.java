@@ -1,44 +1,44 @@
 package util;
 
 /**
- * Iterator which can be used to iterate on the Stack class int this package
+ * Iterator which can be used to iterate on the Stack class int this package.
  *
  * @author Kevin Farine, Timothee Van Hove
  */
 public class StackIterator {
 
     /**
-     * The item on which the iterator is currently pointing on
+     * The item on which the iterator is currently pointing.
      */
     private Item item;
 
     /**
-     * Iterator constructor with a reference on the first item
+     * Iterator constructor with a reference on the item to point.
      *
-     * @param item First element
+     * @param item The item to point on.
      */
     public StackIterator(Item item) {
         this.item = item;
     }
 
     /**
-     * Checks if the next item exists
+     * Checks if the next item exists.
      *
-     * @return true if the next item exists, else returns false
+     * @return true if the next item exists, else returns false.
      */
     public boolean hasNext() {
         return item != null;
     }
 
     /**
-     * Makes the item referencing the next element
+     * Makes the item referencing the next one.
      *
-     * @return the current element's value
-     * @throws RuntimeException it the next element doesn't exists
+     * @return the current item value
+     * @throws RuntimeException if the next item does not exist
      */
     public Object next() {
         if (!hasNext())
-            throw new RuntimeException("The next element doesn't exists");
+            throw new RuntimeException("The next item doesn't exists");
 
         Item current = item;
         item = item.getNextItem();

@@ -8,13 +8,42 @@ import util.Stack;
  * @author Kevin Farine, Timothee Van Hove
  */
 public class Hanoi {
+    /**
+     * The number of needles (towers) used in the problem.
+     */
     private static final int NB_NEEDLES = 3;
+
+    /**
+     * The towers name to be displayed.
+     */
     private static final String[] TOWER_NAMES = {"One", "Two", "Three"};
-    HanoiDisplayer displayer;
+
+    /**
+     * The container of the needles.
+     */
     private final Stack[] needles;
-    private int nb_moves;
+
+    /**
+     * The number of disks stacked on the first needle defined by the user.
+     */
     private final int nbDisks;
 
+    /**
+     * The number of moves required to solve the problem with n disks.
+     */
+    private int nbMoves;
+
+    /**
+     * The displayer that displays the execution of the Hanoi towers problem.
+     */
+    HanoiDisplayer displayer;
+
+    /**
+     * Hanoi generic constructor.
+     *
+     * @param nbDisks The number of disks stacked on the first needle.
+     * @param displayer The displayer that displays the execution of the Hanoi towers problem.
+     */
     public Hanoi(int nbDisks, HanoiDisplayer displayer) {
         if (nbDisks < 0)
             throw new RuntimeException("The disks count cannot be negative");
@@ -34,12 +63,17 @@ public class Hanoi {
         }
     }
 
+    /**
+     * Hanoi constructor used for the console display.
+     *
+     * @param disks The number of disks stacked on the first needle.
+     */
     public Hanoi(int disks) {
         this(disks, new HanoiDisplayer());
     }
 
     /**
-     * Solves the Hanoi towers problem using a recursive algorithm
+     * Solves the Hanoi towers problem using a recursive algorithm.
      */
     public void solve() {
         displayer.display(this);
@@ -47,29 +81,9 @@ public class Hanoi {
     }
 
     /**
-     * Hanoi recursive algorithm used to solve the Hanoi towers problem with 3 needles.
-     * Complexity in O(n^2 - 1)
-     * @param from The first needle. At the beginning all disks are placed onto this needle.
-     * @param via The intermediate needle
-     * @param to The final needle. At the end all disks are placed onto that needle
-     * @param nbDisks The number of disks to place on the first needle.
-     */
-    private void hanoiAlgorithm(Stack from, Stack via, Stack to, int nbDisks) {
-        if (nbDisks > 0) {
-            nb_moves++;
-            hanoiAlgorithm(from, to, via, nbDisks - 1);
-
-            // Transfers the top disk between 2 stacks
-            to.push(from.pop());
-            displayer.display(this);
-            hanoiAlgorithm(via, from, to, nbDisks - 1);
-        }
-    }
-
-    /**
-     * Returns a 2d array representation of the needles current status
+     * Returns a 2d array representation of the needles current status.
      *
-     * @return a 2d int array representing the status of the 3 needles
+     * @return a 2d int array representing the status of the 3 needles.
      */
     public int[][] status() {
         int[][] result = new int[NB_NEEDLES][];
@@ -86,12 +100,12 @@ public class Hanoi {
     }
 
     /**
-     * Indicates if the run is finished (when 2^n - 1 moves have been done)
+     * Indicates if the run is finished (when 2^n - 1 moves have been done).
      *
      * @return True if the run is finished, false if not.
      */
     public boolean finished() {
-        return nb_moves == Math.pow(2, nbDisks) - 1;
+        return nbMoves == Math.pow(2, nbDisks) - 1;
     }
 
     /**
@@ -100,13 +114,13 @@ public class Hanoi {
      * @return The number of moves to solve the problem.
      */
     public int turn() {
-        return nb_moves;
+        return nbMoves;
     }
 
     /**
-     * String representation of the current state of the 3 needles
+     * String representation of the current state of the 3 needles.
      *
-     * @return The string representation
+     * @return The string representation of the needles current state.
      */
     @Override
     public String toString() {
@@ -115,5 +129,25 @@ public class Hanoi {
             state.append(String.format("%-5s%c %s \n", TOWER_NAMES[i], ':', needles[i]));
         }
         return state.toString();
+    }
+
+    /**
+     * Hanoi recursive algorithm used to solve the Hanoi towers problem with 3 needles.
+     * Complexity in O(n^2 - 1).
+     * @param from The first needle. At the beginning all disks are placed onto this needle.
+     * @param via The intermediate needle.
+     * @param to The final needle. At the end all disks are placed onto that needle.
+     * @param nbDisks The number of disks to place on the first needle.
+     */
+    private void hanoiAlgorithm(Stack from, Stack via, Stack to, int nbDisks) {
+        if (nbDisks > 0) {
+            nbMoves++;
+            hanoiAlgorithm(from, to, via, nbDisks - 1);
+
+            // Transfers the top disk between 2 stacks
+            to.push(from.pop());
+            displayer.display(this);
+            hanoiAlgorithm(via, from, to, nbDisks - 1);
+        }
     }
 }
