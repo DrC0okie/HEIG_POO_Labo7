@@ -17,7 +17,7 @@ class Item {
     private Item next;
 
     /**
-     * Element constructor
+     * Item constructor
      *
      * @param value The value of the item.
      * @param next the next item in the stack.

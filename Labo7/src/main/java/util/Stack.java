@@ -13,6 +13,30 @@ public class Stack {
     private Item topItem;
 
     /**
+     * Returns an iterator pointing to the top item.
+     *
+     * @return an iterator pointing to the top item.
+     */
+    public StackIterator getIterator() {
+        return new StackIterator(topItem);
+    }
+
+    /**
+     * Returns an array that represents the current state of this stack starting with the top item.
+     *
+     * @return The array that represents the state of this stack.
+     */
+    public Object[] getCurrentState() {
+        StackIterator iterator = getIterator();
+        List<Object> result = new ArrayList<>();
+
+        while (iterator.hasNext()){
+            result.add(iterator.next());
+        }
+        return result.toArray();
+    }
+
+    /**
      * Pushes an item onto the top of this stack.
      *
      * @param object The object to push on top.
@@ -28,36 +52,12 @@ public class Stack {
      * @throws RuntimeException If the stack is empty.
      */
     public Object pop() {
-        if (topItem == null)
+        if (topItem == null){
             throw new RuntimeException("the stack is empty");
-
-        Object value = topItem.getValue();
+        }
+        Object currentTopItem = topItem.getValue();
         topItem = topItem.getNextItem();
-        return value;
-    }
-
-    /**
-     * Returns an array that represents the current state of this stack starting with the top item.
-     *
-     * @return The array that represents the state of this stack.
-     */
-    public Object[] getCurrentState() {
-        StackIterator iterator = getIterator();
-        List<Object> result = new ArrayList<>();
-
-        while (iterator.hasNext())
-            result.add(iterator.next());
-
-        return result.toArray();
-    }
-
-    /**
-     * Returns an iterator pointing to the top item.
-     *
-     * @return an iterator pointing to the top item.
-     */
-    public StackIterator getIterator() {
-        return new StackIterator(topItem);
+        return currentTopItem;
     }
 
     /**
@@ -70,9 +70,9 @@ public class Stack {
         StackIterator iterator = getIterator();
         StringBuilder builder = new StringBuilder("[");
 
-        while (iterator.hasNext())
+        while (iterator.hasNext()){
             builder.append(" <").append(iterator.next()).append("> ");
-
+        }
         return builder.append("]").toString();
     }
 }
