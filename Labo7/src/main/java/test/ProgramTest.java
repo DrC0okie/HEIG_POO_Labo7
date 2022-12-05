@@ -7,7 +7,8 @@ import java.util.List;
 
 public class ProgramTest {
     static Stack stack = new Stack();
-    private final static String FAIL = "|Test failed|", SUCCESS = "|Test succeeded|";
+    private final static String FAIL = " |Test failed|", SUCCESS = " |Test succeeded|";
+
 
     public static void main(String[] args) {
         System.out.println("----------Test program----------");
@@ -29,20 +30,30 @@ public class ProgramTest {
         negativeValueArgumentsMustThrowException();
     }
 
+    private static void success(){
+        System.out.println(SUCCESS);
+    }
+    private static void success(Exception e){
+        System.out.println(e.getMessage() + SUCCESS);
+    }
+    private static void fail(){
+        System.err.println(FAIL);
+    }
+
     private static void emptyStackMustBePrintable(){
         System.out.print("Printing an empty stack : ");
         try{
             System.out.print(stack);
         }
         catch(Exception e){
-            System.err.println(" " + FAIL);
+            fail();
         }
-        System.out.println(" " + SUCCESS);
+        success();
     }
 
     private static void stackCanContainGenericObjects() {
         System.out.print("Populating stack with generic objects : ");
-        List<Dog> dogs = new ArrayList();
+        List<Dog> dogs = new ArrayList<>();
         try{
             dogs.add(new Dog("Rex", 7));
             dogs.add(new Dog("Laika", 9));
@@ -53,9 +64,9 @@ public class ProgramTest {
             stack.push(42);
         }
         catch(Exception e){
-            System.err.println(FAIL);
+            fail();
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void itemsMustBeIterableAndPrintable() {
@@ -67,9 +78,9 @@ public class ProgramTest {
             }
         }
         catch(Exception e){
-            System.err.println(FAIL);
+            fail();
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void stackMustBePrintable() {
@@ -77,11 +88,11 @@ public class ProgramTest {
         try {
             if(stack.toString().startsWith("[ <") && stack.toString().endsWith("> ]")){
                 System.out.print(stack);
-                System.out.println(" " + SUCCESS);
+                success();
             }
         }
         catch (Exception e){
-            System.err.println(FAIL);
+            fail();
         }
     }
 
@@ -90,23 +101,23 @@ public class ProgramTest {
         try {
             Stack.StackIterator iterator = stack.getIterator();
             if ((int) iterator.next() != 42) {
-                System.err.println(FAIL);
+                fail();
                 return;
             }
         }
         catch(Exception e){
-            System.err.println(FAIL);
+            fail();
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void stackMustReturnCorrectStateArray(){
         System.out.print("Verifying the length of the status array : ");
         if(stack.getCurrentState().length != 4){
-            System.err.println(FAIL);
+            fail();
             return;
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void stackMustBeWellEncapsulated(){
@@ -115,10 +126,10 @@ public class ProgramTest {
         Object[] state = stack.getCurrentState();
         state[0] = 33;
         if((int)(stack.getIterator().next()) == 33){
-            System.err.println(FAIL);
+            fail();
             return;
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void stackCanBeEmptied(){
@@ -127,10 +138,10 @@ public class ProgramTest {
             stack.pop();
         }
         if(!stack.toString().equals("[]")){
-            System.err.println(FAIL);
+            fail();
             return;
         }
-        System.out.println(SUCCESS);
+        success();
     }
 
     private static void poppingAnItemFromEmptyStackMustGenerateException(){
@@ -140,10 +151,10 @@ public class ProgramTest {
             stack.pop();
         }
         catch (RuntimeException e){
-            System.out.println(e.getMessage() + " " + SUCCESS);
+            success(e);
             return;
         }
-        System.err.println(FAIL);
+        fail();
     }
 
     private static void nextItemOnEmptyStackMustGenerateException(){
@@ -153,10 +164,10 @@ public class ProgramTest {
             stack.getIterator().next();
         }
         catch (RuntimeException e){
-            System.out.println(e.getMessage() + " " + SUCCESS);
+            success(e);
             return;
         }
-        System.err.println(FAIL);
+        fail();
     }
 
     private static void multipleArgumentsMustThrowException(){
@@ -165,10 +176,10 @@ public class ProgramTest {
             HanoiDisplayer.main(new String[]{"1", "2"});
         }
         catch (RuntimeException e){
-            System.out.println(e.getMessage() + " " + SUCCESS);
+            success(e);
             return;
         }
-        System.err.println(FAIL);
+        fail();
     }
 
     private static void nonIntegerArgumentsMustThrowException(){
@@ -177,10 +188,10 @@ public class ProgramTest {
             HanoiDisplayer.main(new String[]{"test"});
         }
         catch (RuntimeException e){
-            System.out.println(e.getMessage() + " " + SUCCESS);
+            success(e);
             return;
         }
-        System.err.println(FAIL);
+        fail();
     }
 
     private static void negativeValueArgumentsMustThrowException(){
@@ -189,10 +200,10 @@ public class ProgramTest {
             HanoiDisplayer.main(new String[]{"-1"});
         }
         catch (RuntimeException e){
-            System.out.println(e.getMessage() + " " + SUCCESS);
+            success(e);
             return;
         }
-        System.err.println(FAIL);
+        fail();
     }
 
     abstract static class Pet {
