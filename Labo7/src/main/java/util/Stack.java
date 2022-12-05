@@ -105,7 +105,7 @@ public class Stack {
     }
 
     /**
-     * Iterator which can be used to iterate on the Stack class int this package.
+     * Iterator which can be used to iterate on the Stack (e.g. in a while loop using hasNext()).
      *
      * @author Kevin Farine, Timothee Van Hove
      */
@@ -135,9 +135,9 @@ public class Stack {
         }
 
         /**
-         * Makes the item referencing the next one.
+         * Makes the iterator referencing the next item. The top Item value is returned
          *
-         * @return the current item value
+         * @return the current top item value
          * @throws RuntimeException if the next item does not exist
          */
         public Object next() {
