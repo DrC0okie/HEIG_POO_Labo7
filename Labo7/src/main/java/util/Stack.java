@@ -55,7 +55,7 @@ public class Stack {
      */
     public Object pop() {
         if (topItem == null){
-            throw new RuntimeException("the stack is empty");
+            throw new RuntimeException("The stack is empty");
         }
         Object currentTopItem = topItem.value;
         topItem = topItem.next;
