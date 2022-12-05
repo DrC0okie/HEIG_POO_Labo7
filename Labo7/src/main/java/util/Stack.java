@@ -55,8 +55,8 @@ public class Stack {
         if (topItem == null){
             throw new RuntimeException("the stack is empty");
         }
-        Object currentTopItem = topItem.getValue();
-        topItem = topItem.getNextItem();
+        Object currentTopItem = topItem.value;
+        topItem = topItem.next;
         return currentTopItem;
     }
 
@@ -74,5 +74,80 @@ public class Stack {
             builder.append(" <").append(iterator.next()).append("> ");
         }
         return builder.append("]").toString();
+    }
+
+    /**
+     * represents an item in a stack with a value and a reference to the next one.
+     *
+     * @author Kevin Farine, Timothee Van Hove
+     */
+    private static class Item {
+        /**
+         * The value of this item.
+         */
+        private final Object value;
+
+        /**
+         * The next item linked to this one.
+         */
+        private final Item next;
+
+        /**
+         * Item constructor
+         *
+         * @param value The value of the item.
+         * @param next the next item in the stack.
+         */
+        private Item(Object value, Item next) {
+            this.value = value;
+            this.next = next;
+        }
+    }
+
+    /**
+     * Iterator which can be used to iterate on the Stack class int this package.
+     *
+     * @author Kevin Farine, Timothee Van Hove
+     */
+    public static class StackIterator {
+
+        /**
+         * The item on which the iterator is currently pointing.
+         */
+        private Item item;
+
+        /**
+         * Iterator constructor with a reference on the item to point.
+         *
+         * @param item The item to point on.
+         */
+        public StackIterator(Item item) {
+            this.item = item;
+        }
+
+        /**
+         * Checks if the next item exists.
+         *
+         * @return true if the next item exists, else returns false.
+         */
+        public boolean hasNext() {
+            return item != null;
+        }
+
+        /**
+         * Makes the item referencing the next one.
+         *
+         * @return the current item value
+         * @throws RuntimeException if the next item does not exist
+         */
+        public Object next() {
+            if (!hasNext()){
+                throw new RuntimeException("The next item doesn't exists");
+            }
+
+            Object currentValue = item.value;
+            item = item.next;
+            return currentValue;
+        }
     }
 }
