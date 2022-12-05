@@ -2,7 +2,6 @@ package test;
 
 import hanoi.HanoiDisplayer;
 import util.Stack;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +11,7 @@ public class ProgramTest {
 
     public static void main(String[] args) {
         System.out.println("----------Test program----------");
+        //Stack class tests
         emptyStackMustBePrintable();
         stackCanContainGenericObjects();
         iteratorMustReferenceTopItem();
@@ -39,6 +39,7 @@ public class ProgramTest {
         }
         System.out.println(" " + SUCCESS);
     }
+
     private static void stackCanContainGenericObjects() {
         System.out.print("Populating stack with generic objects : ");
         List<Dog> dogs = new ArrayList();
