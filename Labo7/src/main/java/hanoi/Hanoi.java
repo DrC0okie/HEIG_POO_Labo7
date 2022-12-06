@@ -140,7 +140,7 @@ public class Hanoi {
      * @param from The first needle. At the beginning all disks are placed onto this needle.
      * @param via The intermediate needle.
      * @param to The final needle. At the end all disks are placed onto that needle.
-     * @param nbDisks The number of disks to place on the first needle.
+     * @param nbDisks The number of disks to put on the first needle.
      */
     private void hanoiAlgorithm(Stack from, Stack via, Stack to, int nbDisks) {
         if (nbDisks > 0) {
