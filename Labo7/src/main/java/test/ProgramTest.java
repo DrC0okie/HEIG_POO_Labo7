@@ -7,6 +7,7 @@ import java.util.List;
 
 /**
  * This class is used to perform various tests on the Stack class and the HanoiDisplayer class
+ * 
  * @author Kevin Farine, Timothee Van Hove
  */
 public class ProgramTest {
