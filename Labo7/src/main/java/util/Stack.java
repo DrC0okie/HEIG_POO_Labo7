@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Represents a LIFO stack of objects where each item has a reference to the next one.
  *
- * @author Kevin Farine, Timothee Von Hove
+ * @author Kevin Farine, Timothee Van Hove
  */
 public class Stack {
     /**
