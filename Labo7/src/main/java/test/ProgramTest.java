@@ -282,12 +282,23 @@ public class ProgramTest {
      * Abstract class used to construct objects used to test the stack
      */
     abstract static class Pet {
+        /**
+         * The name of the pet
+         */
         private final String name;
 
+        /**
+         * Construct a pet with a name
+         * @param name
+         */
         Pet(String name) {
             this.name = name;
         }
 
+        /**
+         * String representation of the pet
+         * @return The object in String format
+         */
         @Override
         public String toString() {
             return "Name : " + name;
@@ -298,13 +309,25 @@ public class ProgramTest {
      * Abstract class used to construct objects used to test the stack
      */
     static class Dog extends Pet {
+        /**
+         * Age of the dog
+         */
         private final int age;
 
+        /**
+         * Construct a dog with a name and an age
+         * @param name The name of the dog
+         * @param age The age of the dog (in human's year)
+         */
         Dog(String name, int age) {
             super(name);
             this.age = age;
         }
 
+        /**
+         * String representation of the dog
+         * @return The object in String format
+         */
         @Override
         public String toString() {
             return super.toString() + ", Age : " + age;
