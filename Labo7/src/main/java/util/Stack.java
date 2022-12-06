@@ -83,7 +83,7 @@ public class Stack {
      *
      * @author Kevin Farine, Timothee Van Hove
      */
-    private static class Item {
+    private static class Item{
         /**
          * The value of this item.
          */

@@ -95,6 +95,9 @@ public class ProgramTest {
                 System.out.print(stack);
                 success();
             }
+            else{
+                fail();
+            }
         }
         catch (Exception e){
             fail();
