@@ -1,5 +1,6 @@
 package test;
 
+import hanoi.Hanoi;
 import hanoi.HanoiDisplayer;
 import util.Stack;
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.List;
 
 /**
  * This class is used to perform various tests on the Stack class and the HanoiDisplayer class
- * 
+ *
  * @author Kevin Farine, Timothee Van Hove
  */
 public class ProgramTest {
@@ -45,6 +46,7 @@ public class ProgramTest {
         multipleArgumentsMustThrowException();
         nonIntegerArgumentsMustThrowException();
         negativeValueArgumentsMustThrowException();
+        hanoiAlgorithmMustBeSolvedWithCorrectTurnNumber();
     }
 
     /**
@@ -276,6 +278,22 @@ public class ProgramTest {
             return;
         }
         fail();
+    }
+
+    /**
+     * Tests if the proble is solved with the correct number of turns
+     */
+    private static void hanoiAlgorithmMustBeSolvedWithCorrectTurnNumber(){
+        for(int i = 1; i < 5; i++){
+            Hanoi hanoi = new Hanoi(i);
+            hanoi.solve();
+            if(hanoi.turn() != (int)Math.pow(2, i) - 1){
+                fail();
+            }
+            else {
+                success();
+            }
+        }
     }
 
     /**
