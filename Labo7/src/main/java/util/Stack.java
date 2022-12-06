@@ -119,11 +119,12 @@ public class Stack {
         private Item item;
 
         /**
-         * Iterator constructor with a reference on the item to point.
+         * Iterator constructor with a reference on the item to point. This constructor is
+         * private because the user cannot instantiate an Item outside this class.
          *
          * @param item The item to point on.
          */
-        public StackIterator(Item item) {
+        private StackIterator(Item item) {
             this.item = item;
         }
 

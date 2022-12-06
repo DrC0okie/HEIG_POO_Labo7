@@ -29,7 +29,7 @@ public class Hanoi {
     private final int nbDisks;
 
     /**
-     * The displayer that displays the execution of the Hanoi towers problem.
+     * Displayer of the Hanoi towers problem execution.
      */
     private final HanoiDisplayer displayer;
 
