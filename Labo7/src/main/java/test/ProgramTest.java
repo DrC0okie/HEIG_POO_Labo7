@@ -5,9 +5,25 @@ import util.Stack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to perform various tests on the Stack class and the HanoiDisplayer class
+ * @author Kevin Farine, Timothee Van Hove
+ */
 public class ProgramTest {
-    static Stack stack = new Stack();
-    private final static String FAIL = " |Test failed|", SUCCESS = " |Test succeeded|";
+    /**
+     * Stack used to perform various tests
+     */
+    private static Stack stack = new Stack();
+
+    /**
+     * Message to print in case of success
+     */
+    private final static String FAIL = " |Test failed|";
+
+    /**
+     * Message to print in case of failure
+     */
+    private final static String SUCCESS = " |Test succeeded|";
 
 
     public static void main(String[] args) {
@@ -24,22 +40,37 @@ public class ProgramTest {
         poppingAnItemFromEmptyStackMustGenerateException();
         nextItemOnEmptyStackMustGenerateException();
 
-        // Hanoi class tests
+        //Hanoi class tests
         multipleArgumentsMustThrowException();
         nonIntegerArgumentsMustThrowException();
         negativeValueArgumentsMustThrowException();
     }
 
+    /**
+     * Prints the success message
+     */
     private static void success(){
         System.out.println(SUCCESS);
     }
+
+    /**
+     * Prints the success message with exception message
+     * @param e Exception used tu print the additional message
+     */
     private static void success(Exception e){
         System.out.println(e.getMessage() + SUCCESS);
     }
+
+    /**
+     * Prints the failure message
+     */
     private static void fail(){
         System.err.println(FAIL);
     }
 
+    /**
+     * Tests if an empty stack is printable
+     */
     private static void emptyStackMustBePrintable(){
         System.out.print("Printing an empty stack : ");
         try{
@@ -51,6 +82,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if it is possible to push any object in the stack
+     */
     private static void stackCanContainGenericObjects() {
         System.out.print("Populating stack with generic objects : ");
         List<Dog> dogs = new ArrayList<>();
@@ -69,6 +103,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if the items contained in the stack are printable
+     */
     private static void itemsMustBeIterableAndPrintable() {
         System.out.print("Iterating and printing items of the stack : ");
         Stack.StackIterator iterator = stack.getIterator();
@@ -83,6 +120,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if the whole stack is printable
+     */
     private static void stackMustBePrintable() {
         System.out.print("Printing the stack : ");
         try {
@@ -99,6 +139,9 @@ public class ProgramTest {
         }
     }
 
+    /**
+     * Tests if the StackIterator given by the stack is referencing the top item of the stack
+     */
     private static void iteratorMustReferenceTopItem(){
         System.out.print("Verifying the StackIterator reference : ");
         try {
@@ -114,6 +157,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if the returned current state array has the correct length
+     */
     private static void stackMustReturnCorrectStateArray(){
         System.out.print("Verifying the length of the status array : ");
         if(stack.getCurrentState().length != 4){
@@ -123,6 +169,10 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if by modifying the objects contained in the current state array it modifies the
+     * objects in the stack
+     */
     private static void stackMustBeWellEncapsulated(){
         System.out.print("Verifying stack encapsulation by trying to modify the state array : ");
         stack.push(42);
@@ -135,6 +185,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if the stack can be entirely emptied
+     */
     private static void stackCanBeEmptied(){
         System.out.print("Emptying the stack entirely : ");
         while(stack.getIterator().hasNext()){
@@ -147,6 +200,9 @@ public class ProgramTest {
         success();
     }
 
+    /**
+     * Tests if popping an item from an empty stack throws an exception
+     */
     private static void poppingAnItemFromEmptyStackMustGenerateException(){
         System.out.print("Trying to pop an item from an empty stack : ");
         try {
@@ -160,6 +216,9 @@ public class ProgramTest {
         fail();
     }
 
+    /**
+     * Tests if calling next() on an iterator referencing an empty stack throws an exception
+     */
     private static void nextItemOnEmptyStackMustGenerateException(){
         System.out.print("Trying to reach next item with an iterator on an empty stack : ");
         try {
@@ -173,6 +232,9 @@ public class ProgramTest {
         fail();
     }
 
+    /**
+     * Tests if launching the Hanoi program with multiple argument throws an exception
+     */
     private static void multipleArgumentsMustThrowException(){
         System.out.print("Trying to launch the hanoi program with multiple arguments : ");
         try {
@@ -185,6 +247,9 @@ public class ProgramTest {
         fail();
     }
 
+    /**
+     * Tests if launching the Hanoi program with a non-integer argument throws an exception
+     */
     private static void nonIntegerArgumentsMustThrowException(){
         System.out.print("Trying to launch the hanoi program with non integer arguments : ");
         try {
@@ -197,6 +262,9 @@ public class ProgramTest {
         fail();
     }
 
+    /**
+     * Tests if launching the Hanoi program with a negative integer argument throws an exception
+     */
     private static void negativeValueArgumentsMustThrowException(){
         System.out.print("Trying to launch the hanoi program with negative integer arguments : ");
         try {
@@ -209,6 +277,9 @@ public class ProgramTest {
         fail();
     }
 
+    /**
+     * Abstract class used to construct objects used to test the stack
+     */
     abstract static class Pet {
         private final String name;
 
@@ -222,6 +293,9 @@ public class ProgramTest {
         }
     }
 
+    /**
+     * Abstract class used to construct objects used to test the stack
+     */
     static class Dog extends Pet {
         private final int age;
 
