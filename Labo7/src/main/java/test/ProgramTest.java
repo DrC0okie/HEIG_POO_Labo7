@@ -5,6 +5,11 @@ import util.Stack;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test unit about the class Hanoi and their uses.
+ *
+ * @author Kevin Farine, Timothee Van Hove
+ */
 public class ProgramTest {
     static Stack stack = new Stack();
     private final static String FAIL = " |Test failed|", SUCCESS = " |Test succeeded|";
