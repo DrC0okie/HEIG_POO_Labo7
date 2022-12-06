@@ -12,10 +12,21 @@ import java.util.List;
  * @author Kevin Farine, Timothee Van Hove
  */
 public class ProgramTest {
+
+    /**
+     * Number of successful tests
+     */
+    private static int successNb = 0;
+
+    /**
+     *Number of failed tests
+     */
+    private static int failedNb = 0;
+
     /**
      * Stack used to perform various tests
      */
-    private static Stack stack = new Stack();
+    private final static Stack stack = new Stack();
 
     /**
      * Message to print in case of success
@@ -47,12 +58,18 @@ public class ProgramTest {
         nonIntegerArgumentsMustThrowException();
         negativeValueArgumentsMustThrowException();
         hanoiAlgorithmMustBeSolvedWithCorrectTurnNumber();
+        System.out.println("\nTest program finished :");
+        System.out.println("  -" + String.format("%2s", successNb) + " test(s) passed");
+        System.out.println("  -" + String.format("%2s", failedNb) + " test(s) failed");
+
+
     }
 
     /**
      * Prints the success message
      */
     private static void success(){
+        successNb++;
         System.out.println(SUCCESS);
     }
 
@@ -61,13 +78,15 @@ public class ProgramTest {
      * @param e Exception used tu print the additional message
      */
     private static void success(Exception e){
-        System.out.println(e.getMessage() + SUCCESS);
+        System.out.print(e.getMessage());
+        success();
     }
 
     /**
      * Prints the failure message
      */
     private static void fail(){
+        failedNb ++;
         System.err.println(FAIL);
     }
 
@@ -281,7 +300,7 @@ public class ProgramTest {
     }
 
     /**
-     * Tests if the proble is solved with the correct number of turns
+     * Tests if the problem is solved with the correct number of turns
      */
     private static void hanoiAlgorithmMustBeSolvedWithCorrectTurnNumber(){
         for(int i = 1; i < 5; i++){
@@ -289,11 +308,10 @@ public class ProgramTest {
             hanoi.solve();
             if(hanoi.turn() != (int)Math.pow(2, i) - 1){
                 fail();
-            }
-            else {
-                success();
+                return;
             }
         }
+        success();
     }
 
     /**
@@ -307,7 +325,7 @@ public class ProgramTest {
 
         /**
          * Construct a pet with a name
-         * @param name
+         * @param name The name of the pet
          */
         Pet(String name) {
             this.name = name;

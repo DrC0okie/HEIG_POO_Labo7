@@ -53,9 +53,6 @@ public class HanoiDisplayer {
         } catch (NumberFormatException e) {
             throw new NumberFormatException("Cannot parse " + "\"" + args[0] + "\"" + " to int");
         }
-        if (nbDisks < 1){
-            throw new RuntimeException("The number of disks cannot be < 1");
-        }
         return nbDisks;
     }
 }

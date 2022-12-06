@@ -45,8 +45,8 @@ public class Hanoi {
      * @param displayer The displayer that displays the execution of the Hanoi towers problem.
      */
     public Hanoi(int nbDisks, HanoiDisplayer displayer) {
-        if (nbDisks < 0){
-            throw new RuntimeException("The disks count cannot be negative");
+        if (nbDisks < 1){
+            throw new RuntimeException("The disks count cannot be < 1");
         }
 
         this.nbDisks = nbDisks;
