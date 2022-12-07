@@ -129,7 +129,10 @@ public class Hanoi {
     public String toString() {
         StringBuilder state = new StringBuilder("-- Turn: " + turn() + "\n");
         for (int i = 0; i < NB_NEEDLES; ++i) {
-            state.append(String.format("%-5s%c %s \n", TOWER_NAMES[i], ':', needles[i]));
+            state.append(String.format("%-7s%s", TOWER_NAMES[i] + ":", needles[i]));
+            if(i != NB_NEEDLES - 1){
+                state.append("\n");
+            }
         }
         return state.toString();
     }
@@ -144,11 +147,11 @@ public class Hanoi {
      */
     private void hanoiAlgorithm(Stack from, Stack via, Stack to, int nbDisks) {
         if (nbDisks > 0) {
-            ++nbMoves;
             hanoiAlgorithm(from, to, via, nbDisks - 1);
 
             // Transfers the top disk between 2 stacks
             to.push(from.pop());
+            ++nbMoves;
             displayer.display(this);
             hanoiAlgorithm(via, from, to, nbDisks - 1);
         }

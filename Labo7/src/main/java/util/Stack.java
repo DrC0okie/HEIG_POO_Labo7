@@ -70,10 +70,10 @@ public class Stack {
     @Override
     public String toString() {
         StackIterator iterator = getIterator();
-        StringBuilder builder = new StringBuilder("[");
+        StringBuilder builder = new StringBuilder("[ ");
 
         while (iterator.hasNext()){
-            builder.append(" <").append(iterator.next()).append("> ");
+            builder.append("<").append(iterator.next()).append("> ");
         }
         return builder.append("]").toString();
     }
