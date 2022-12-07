@@ -215,7 +215,7 @@ public class ProgramTest {
         while(stack.getIterator().hasNext()){
             stack.pop();
         }
-        if(!stack.toString().equals("[]")){
+        if(!stack.toString().equals("[ ]")){
             fail();
             return;
         }
